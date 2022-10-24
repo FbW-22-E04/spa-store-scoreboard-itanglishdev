@@ -1,14 +1,21 @@
-import ScoreContext from "../contexts/ScoreContext";
+import {ScoreContext} from "../contexts/ScoreContext";
+import {useContext} from 'react'
+import Infoboard from "./Infoboard";
 
-function Scoreoard() {
+function Scoreboard() {
+
+    const {score, plusScore, minusScore} = useContext(ScoreContext)
+
+
     return (
+
         <div>
-            <ScoreContext/>
-             <h2>Score</h2>
-      <button type="">Add</button>
-      <button type="">Subtract</button>
+             <h2>{score}</h2>
+      <button onClick={()=>plusScore()}>Add</button>
+      <button onClick={()=>minusScore()}>Subtract</button>
+      <Infoboard/>
         </div>
       );
 }
 
-export default Scoreoard;
+export default Scoreboard;

@@ -1,32 +1,22 @@
-import {createContext, useContext, useState} from 'react' 
+import {createContext, useState} from 'react' 
 
-const Context = createContext()
+export const ScoreContext = createContext()
 
 export function ScoreContextProvider({children}) {
 
     const [score, setScore] = useState(0)
     
     function plusScore(){
-        setScore(prev => prev + 10)
+        setScore(score + 10)
     }
 
     function minusScore(){
-        setScore(prev => prev -10)
+        setScore(score -10)
     }
 
-    return <Context.Provider value={{score, setScore,plusScore, minusScore}}>
-    {children}
-    </Context.Provider>
-}
-
-function ScoreContext() {
-
-
     return (
-        <div>
-            
-        </div>
+        <ScoreContext.Provider value={{score, plusScore, minusScore}}>
+        {children}
+        </ScoreContext.Provider>
       );
 }
-
-export default ScoreContext;
